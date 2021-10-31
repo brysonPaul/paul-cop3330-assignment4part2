@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="inToDoListPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ToDoListViewController">
+   <children>
+      <ScrollPane layoutY="129.0" prefHeight="272.0" prefWidth="600.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="475.0" prefWidth="599.0">
+               <children>
+                  <RadioButton layoutX="28.0" layoutY="32.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label contentDisplay="CENTER" layoutX="144.0" layoutY="33.0" prefHeight="18.0" prefWidth="166.0" text="Walk The Dog" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" layoutX="310.0" layoutY="32.0" prefHeight="27.0" prefWidth="105.0" text="2/3/2022" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="editItemButton" layoutX="435.0" layoutY="31.0" mnemonicParsing="false" onAction="#loadEditItemView" prefHeight="30.0" prefWidth="74.0" text="Edit">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <RadioButton layoutX="28.0" layoutY="100.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label contentDisplay="CENTER" layoutX="144.0" layoutY="101.0" prefHeight="18.0" prefWidth="166.0" text="Take out trash" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" layoutX="310.0" layoutY="100.0" prefHeight="27.0" prefWidth="105.0" text="12/4/2021" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="435.0" layoutY="98.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Edit">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <RadioButton layoutX="28.0" layoutY="163.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label contentDisplay="CENTER" layoutX="144.0" layoutY="164.0" prefHeight="18.0" prefWidth="166.0" text="Get groceries" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" layoutX="310.0" layoutY="163.0" prefHeight="27.0" prefWidth="105.0" text="11/19/2021" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="435.0" layoutY="160.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Edit">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <RadioButton layoutX="28.0" layoutY="224.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label contentDisplay="CENTER" layoutX="144.0" layoutY="225.0" prefHeight="18.0" prefWidth="166.0" text="Clean room" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" layoutX="310.0" layoutY="224.0" prefHeight="27.0" prefWidth="105.0" text="10/4/2021" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="435.0" layoutY="223.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Edit">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <RadioButton layoutX="14.0" layoutY="289.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label contentDisplay="CENTER" layoutX="144.0" layoutY="289.0" prefHeight="18.0" prefWidth="166.0" text="Walk to home" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" layoutX="310.0" layoutY="288.0" prefHeight="27.0" prefWidth="105.0" text="2/3/2022" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="461.0" layoutY="286.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Edit">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="542.0" layoutY="31.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="29.0" text="-">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="542.0" layoutY="99.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="29.0" text="-">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="542.0" layoutY="161.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="29.0" text="-">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="542.0" layoutY="223.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="29.0" text="-">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button fx:id="backButton" layoutY="2.0" mnemonicParsing="false" onAction="#loadOnOpenView" prefHeight="23.0" prefWidth="58.0" text="&lt;--">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="141.0" layoutY="14.0" prefHeight="53.0" prefWidth="318.0" text="Example List 1" textAlignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="addItemButton" layoutX="542.0" layoutY="2.0" mnemonicParsing="false" onAction="#loadAddItemView" prefHeight="23.0" prefWidth="58.0" text="+">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Label layoutX="150.0" layoutY="97.0" prefHeight="17.0" prefWidth="136.0" text="Description">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="321.0" layoutY="97.0" prefHeight="17.0" prefWidth="136.0" text="Date Due">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="sortByButton" layoutX="432.0" layoutY="2.0" mnemonicParsing="false" onAction="#loadSortView" prefHeight="32.0" prefWidth="100.0" text="Sort by...">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Label layoutX="14.0" layoutY="96.0" prefHeight="17.0" prefWidth="136.0" text="Complete?">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="67.0" layoutY="2.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="100.0" text="Save">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

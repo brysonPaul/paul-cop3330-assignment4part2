@@ -1,0 +1,63 @@
+@startuml
+allowmixing
+
+class ToDoItem {
+    public String description
+    public Date dueDate
+    public boolean isComplete
+    public void setDescription(String s)
+    public void setDueDate(Date d)
+    public void markAsComplete()
+    public void display()
+}
+class ToDoList{
+    public String title
+    public ArrayList<ToDoItem> toDoList
+    public void addItem(ToDoItem t)
+    public ToDoItem removeItem(int index)
+    public void setTitle(String s)
+    public void editToDoItemDesc(int index,String s)
+    public void editToDoItemDueDate(int index, Date d)
+    public void markItemAsComplete(int index)
+    public void displayExistingItems()
+    public void displayCompletedItems()
+    public void displayIncompleteItems()
+    public ArrayList<ToDoItem> sortByCompleteItems()
+    public ArrayList<ToDoItem> sortByIncompleteItems()
+    public void displayItems(ArrayList<ToDoItem> i)
+    public void saveToDoList(String path)
+    public String saveToDoList()
+    public ToDoList loadToDoList(String path)
+}
+class ToDoListManager{
+    public ArrayList<ToDoList> toDoLists
+    public void addToDoList(ToDoList t)
+    public void removeToDoList(int index)
+    public void editToDoListTitle(int index, String title)
+    public void AddItemToToDoList(int index, ToDoItem item)
+    public void RemoveItemFromToDoList(int toDoIndex, int itemIndex)
+    public void saveSingleToDoList(int index, String path)
+    public void saveAllToDoLists()
+    public void loadSingleToDoList(int index, String path)
+    public void loadAllToDoLists(int index, String path)
+}
+class App{
+    public void start()
+    public static void main()
+}
+frame GUI{
+}
+person user
+storage listData
+
+GUI<-- user
+GUI<--App
+App<--GUI
+ToDoListManager<-- listData
+listData<--ToDoListManager
+
+App<--ToDoListManager
+ToDoListManager<--App
+ToDoListManager<--ToDoList
+ToDoList<--ToDoItem
+@enduml
