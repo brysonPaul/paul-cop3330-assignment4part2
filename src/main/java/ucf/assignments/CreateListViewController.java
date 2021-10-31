@@ -3,8 +3,13 @@ package ucf.assignments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -13,16 +18,47 @@ import java.io.IOException;
  *  Copyright 2021 Bryson Paul
  */
 public class CreateListViewController {
+   @FXML
+    private TextField descFieldNewTDList;
     @FXML
-    private Pane createListPane;
+    private Button okayButtonTDList;
     @FXML
-    private Button backButton;
+    private Button cancelButtonTDList;
     @FXML
-    private Button okayButton;
+    public ToDoListManager toDoListHold;
 
     @FXML
-    private void loadToDoListView(ActionEvent event) throws IOException {
-        Pane p = FXMLLoader.load(getClass().getResource("/on-open-view.fxml"));
-        createListPane.getChildren().setAll(p);
+    private void loadOnOpenView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/on-open-view.fxml"));
+        Stage secondStage = new Stage();
+        secondStage.setScene(new Scene(loader.load()));
+        //this makes the thing display the list. but it in anything that goes back to the main method
+        AppController mainController = loader.getController();
+        mainController.displayLists();
+        //shows stage
+        secondStage.show();
+
+        Stage curStage = (Stage) cancelButtonTDList.getScene().getWindow();
+        curStage.close();
     }
+    @FXML
+    private void addToDoListAndDisplay(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/on-open-view.fxml"));
+        Stage secondStage = new Stage();
+        secondStage.setScene(new Scene(loader.load()));
+        App.tm.addToDoList(new ToDoList(descFieldNewTDList.getText()));
+        //displays all the lists
+        AppController mainController = loader.getController();
+        mainController.displayLists();
+        //shows stage
+        secondStage.show();
+        //closes current stage
+        Stage curStage = (Stage) okayButtonTDList.getScene().getWindow();
+        curStage.close();
+
+    }
+
+
+
+
 }

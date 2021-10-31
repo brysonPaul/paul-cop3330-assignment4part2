@@ -12,9 +12,9 @@
    <children>
       <ScrollPane layoutY="129.0" prefHeight="272.0" prefWidth="600.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="475.0" prefWidth="599.0">
+          <AnchorPane fx:id="toDoListItemAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="475.0" prefWidth="599.0">
                <children>
-                  <RadioButton layoutX="28.0" layoutY="32.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0">
+                  <RadioButton layoutX="28.0" layoutY="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0">
                      <font>
                         <Font size="18.0" />
                      </font>

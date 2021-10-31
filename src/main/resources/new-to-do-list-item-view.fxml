@@ -10,7 +10,7 @@
 
 <Pane fx:id="createListItemPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.CreateListItemViewController">
    <children>
-      <TextField id="ListName" layoutX="193.0" layoutY="102.0" prefHeight="59.0" prefWidth="295.0" promptText="enter desc. here">
+      <TextField id="ListName" fx:id="descField" layoutX="193.0" layoutY="102.0" prefHeight="59.0" prefWidth="295.0" promptText="enter desc. here">
          <font>
             <Font size="28.0" />
          </font>
@@ -20,7 +20,7 @@
             <Font size="28.0" />
          </font>
       </Text>
-      <Button id="CreateButton" fx:id="okayButton" layoutX="419.0" layoutY="315.0" mnemonicParsing="false" onAction="#loadToDoListView" prefHeight="71.0" prefWidth="151.0" text="Create ">
+      <Button id="CreateButton" fx:id="okayButton" layoutX="419.0" layoutY="315.0" mnemonicParsing="false" onAction="#addToDoListAndDisplay" prefHeight="71.0" prefWidth="151.0" text="Create ">
          <font>
             <Font size="31.0" />
          </font>
@@ -40,6 +40,6 @@
             <Font size="28.0" />
          </font>
       </Text>
-      <DatePicker layoutX="193.0" layoutY="192.0" prefHeight="59.0" prefWidth="295.0" />
+      <DatePicker fx:id="dateField" layoutX="193.0" layoutY="192.0" prefHeight="59.0" prefWidth="295.0" />
    </children>
 </Pane>

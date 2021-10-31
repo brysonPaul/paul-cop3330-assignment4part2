@@ -9,7 +9,7 @@
 
 <Pane fx:id="createListPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.CreateListViewController">
    <children>
-      <TextField id="ListName" layoutX="190.0" layoutY="170.0" prefHeight="59.0" prefWidth="295.0" promptText="enter title here">
+      <TextField id="ListName" fx:id="descFieldNewTDList" layoutX="190.0" layoutY="170.0" prefHeight="59.0" prefWidth="295.0" promptText="enter title here">
          <font>
             <Font size="28.0" />
          </font>
@@ -19,7 +19,7 @@
             <Font size="28.0" />
          </font>
       </Text>
-      <Button id="CreateButton" fx:id="okayButton" layoutX="419.0" layoutY="315.0" mnemonicParsing="false" onAction="#loadToDoListView" prefHeight="71.0" prefWidth="151.0" text="Create ">
+      <Button id="CreateButton" fx:id="okayButtonTDList" layoutX="419.0" layoutY="315.0" mnemonicParsing="false" onAction="#addToDoListAndDisplay" prefHeight="71.0" prefWidth="151.0" text="Create ">
          <font>
             <Font size="31.0" />
          </font>
@@ -29,7 +29,7 @@
             <Font size="38.0" />
          </font>
       </Label>
-      <Button id="CancelButton" fx:id="backButton" layoutX="14.0" layoutY="315.0" mnemonicParsing="false" onAction="#loadToDoListView" prefHeight="71.0" prefWidth="151.0" text="Cancel">
+      <Button id="CancelButton" fx:id="cancelButtonTDList" layoutX="14.0" layoutY="315.0" mnemonicParsing="false" onAction="#loadOnOpenView" prefHeight="71.0" prefWidth="151.0" text="Cancel">
          <font>
             <Font size="31.0" />
          </font>

@@ -11,60 +11,44 @@ public class ToDoList {
     public String title;
     public ArrayList<ToDoItem> toDoList;//can do 100 or more, so is a good thing to use
     public ToDoList(){
-        /*
-        this.title = " "
-        this.toDoList = new ArrayList<>()
-         */
+
+        this.title = " ";
+        this.toDoList = new ArrayList<>();
+
     }
     public ToDoList(String title){
-        /*
-        this.title =title
-        this.toDoList = new ArrayList<>()
-         */
+
+        this.title =title;
+        this.toDoList = new ArrayList<>();
     }
 
     public void addItem(ToDoItem t){
-        /*
-            toDoList.add(t)
-         */
+
+            toDoList.add(t);
     }
     public ToDoItem removeItem(int index){
-        /*
-           return toDoList.remove(index)
-         */
-        return new ToDoItem("",new Date());
+
+           return toDoList.remove(index);
     }
     public void setTitle(String s){
-        /*
-        this.title=s
-         */
+        this.title=s;
     }
     public void editToDoItemDesc(int index,String s){
-        /*
-        toDoList.get(index).setDescription(s)
-         */
+        toDoList.get(index).setDescription(s);
 
     }
     public void editToDoItemDueDate(int index, Date d){
-        /*
-        toDoList.get(index).setDate(d)
-         */
+        toDoList.get(index).setDueDate(d);
     }
     public void markItemAsComplete(int index){
-        /*
         toDoList.get(index).markAsComplete();
-         */
     }
-    public void displayExistingItems(){
-        /*
+    public void displayExistingItems() {
         displayItems(this.toDoList);
-      */
     }
     public void displayCompletedItems(){
-     /*
-        ArrayList<ToDoItem> a = sortByCompleteItems(this.toDoList)
-        displayItems(a)
-      */
+    //    ArrayList<ToDoItem> a = sortByCompleteItems(this.toDoList);
+      //  displayItems(a);
     }
     public void displayIncompleteItems(){
      /*
