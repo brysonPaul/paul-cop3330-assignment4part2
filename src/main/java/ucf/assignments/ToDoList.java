@@ -1,5 +1,6 @@
 package ucf.assignments;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,7 +24,6 @@ public class ToDoList {
     }
 
     public void addItem(ToDoItem t){
-
             toDoList.add(t);
     }
     public ToDoItem removeItem(int index){
@@ -37,7 +37,7 @@ public class ToDoList {
         toDoList.get(index).setDescription(s);
 
     }
-    public void editToDoItemDueDate(int index, Date d){
+    public void editToDoItemDueDate(int index, LocalDate d){
         toDoList.get(index).setDueDate(d);
     }
     public void markItemAsComplete(int index){

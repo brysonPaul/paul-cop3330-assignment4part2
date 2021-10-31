@@ -24,7 +24,7 @@ import java.io.IOException;
  */
 public class App extends Application {
     public static ToDoListManager tm = new ToDoListManager();;
-    public static int currentList;
+    public static Integer currentList=0;
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/on-open-view.fxml"));

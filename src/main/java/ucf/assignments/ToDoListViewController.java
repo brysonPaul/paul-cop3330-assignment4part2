@@ -30,9 +30,8 @@ public class ToDoListViewController {
     @FXML
     private Button addItemButton;
     @FXML
-    private Button editItemButton;
-    @FXML
     private AnchorPane toDoListItemAnchorPane;
+    @FXML private Label title;
 
     @FXML private RadioButton[] radioButtons;
     @FXML private Label[] descriptions;
@@ -40,13 +39,9 @@ public class ToDoListViewController {
     @FXML private Button[] editItemButtons;
     @FXML private Button[] deleteItemButtons;
 
-    int index;
-
-    public void setIndex(int index){
-        this.index=index;
-    }
     @FXML public void displayToDoList(){
-        display(App.tm.toDoLists.get(index));
+        title.setText(App.tm.toDoLists.get(App.currentList).title);
+        display(App.tm.toDoLists.get(App.currentList));
     }
     @FXML private void display(ToDoList toDoList){
         int size =toDoList.toDoList.size();
@@ -69,7 +64,10 @@ public class ToDoListViewController {
 
             radioButtons[x].setText("");
             radioButtons[x].setPrefSize(28,27);
-            descriptions[x].setFont(new Font(18));
+            radioButtons[x].setFont(new Font(18));
+            if(toDoList.toDoList.get(x).isComplete){
+                radioButtons[x].isArmed();
+            }
 
             descriptions[x].setText(toDoList.toDoList.get(x).description);
             descriptions[x].setPrefSize(166, 18);
@@ -117,7 +115,14 @@ public class ToDoListViewController {
         curStage.close();
     }
     @FXML private void loadAddItemView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/new-to-do-list-item-view.fxml"));
+        Stage secondStage = new Stage();
+        secondStage.setScene(new Scene(loader.load()));
+        //shows stage
+        secondStage.show();
 
+        Stage curStage = (Stage) addItemButton.getScene().getWindow();
+        curStage.close();
     }
     @FXML private void loadEditItemView(ActionEvent event) throws IOException {
 

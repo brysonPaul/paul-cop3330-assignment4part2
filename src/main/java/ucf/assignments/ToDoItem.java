@@ -1,5 +1,6 @@
 package ucf.assignments;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /*
@@ -8,24 +9,26 @@ import java.util.Date;
  */
 public class ToDoItem {
     public String description;
-    public Date dueDate;
+    public LocalDate dueDate;
     public boolean isComplete;
-    public ToDoItem(String title,Date dueDate){
-        /*
-        this.description = description
-        this.dueDate = dueDate
-        this.isComplete = false
-         */
+    public ToDoItem(String description , LocalDate dueDate){
+
+        this.description = description;
+        this.dueDate = dueDate;
+        this.isComplete = false;
+    }
+    public ToDoItem(String description){
+
+        this.description = description;
+        this.isComplete = false;
     }
     public void setDescription(String s){
         /*
          this.description = s
          */
     }
-    public void setDueDate(Date d){
-        /*
-        this.dueDate = d
-         */
+    public void setDueDate(LocalDate d){
+        this.dueDate = d;
     }
     public void markAsComplete(){
         /*

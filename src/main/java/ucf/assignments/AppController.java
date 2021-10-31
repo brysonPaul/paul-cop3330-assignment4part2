@@ -116,13 +116,13 @@ public class AppController {
     private void loadToDoListView(ActionEvent event, int i) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/in-to-do-list-view.fxml"));
         Parent root= loader.load();
+        App.currentList=i;
         ToDoListViewController controller = loader.getController();
-        controller.setIndex(i);
         controller.displayToDoList();
         Stage s= new Stage();
         s.setScene(new Scene(root));
         s.show();
-        Stage secondStage = (Stage) addButton.getScene().getWindow();
+        Stage secondStage = (Stage) addButton.getScene().getWindow();//dont like that I chose a random button for this step, but it is better than adding the whole button
         secondStage.close();
     }
     @FXML private void loadEditToDoList(ActionEvent event,int i) throws IOException{
