@@ -24,12 +24,10 @@ public class ToDoItem {
     public ToDoItem(ToDoItem t){
         this.description=t.description;
         this.dueDate=t.dueDate;
-        this.isComplete=t.isComplete;
+        this.isComplete=false;
     }
     public void setDescription(String s){
-        /*
-         this.description = s
-         */
+         this.description = s;
     }
     public void setDueDate(LocalDate d){
         this.dueDate = d;

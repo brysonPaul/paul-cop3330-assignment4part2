@@ -26,6 +26,7 @@ import java.time.LocalDate;
 public class App extends Application {
     public static ToDoListManager tm = new ToDoListManager();;
     public static Integer currentList=0;
+    public static Integer sortByValue=0;//0 means existing, 1 is completed, 2 is incomplete items
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/on-open-view.fxml"));

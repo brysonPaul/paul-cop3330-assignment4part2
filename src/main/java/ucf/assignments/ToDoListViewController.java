@@ -17,6 +17,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /*
  *  UCF COP3330 Fall 2021 Assignment 4 Solution
@@ -41,10 +43,20 @@ public class ToDoListViewController {
 
     @FXML public void displayToDoList(){
         title.setText(App.tm.toDoLists.get(App.currentList).title);
-        display(App.tm.toDoLists.get(App.currentList));
+        if(App.sortByValue==0){//shows existing items
+            display(App.tm.toDoLists.get(App.currentList).toDoList);
+        }
+        else if(App.sortByValue==1){//shows completed items
+            App.tm.toDoLists.get(App.currentList).sortByCompleteItems();
+            display(App.tm.toDoLists.get(App.currentList).completeItems);
+        }
+        else if(App.sortByValue==2){//shows incomplete items
+            App.tm.toDoLists.get(App.currentList).sortByIncompleteItems();
+            display(App.tm.toDoLists.get(App.currentList).incompleteItems);;
+        }
     }
-    @FXML private void display(ToDoList toDoList){
-        int size =toDoList.toDoList.size();
+    @FXML private void display(ArrayList<ToDoItem> items){
+        int size =items.size();
         radioButtons = new RadioButton[size];
         descriptions = new Label[size];
         dateDue = new Label[size];
@@ -65,7 +77,7 @@ public class ToDoListViewController {
             radioButtons[x].setText("");
             radioButtons[x].setPrefSize(28,27);
             radioButtons[x].setFont(new Font(18));
-            if(toDoList.toDoList.get(x).isComplete){
+            if(items.get(x).isComplete){
                 radioButtons[x].setSelected(true);
             }
             else radioButtons[x].setSelected(false);
@@ -73,20 +85,22 @@ public class ToDoListViewController {
                 @Override public void handle(ActionEvent e) {
                     if(radioButtons[finalX].isSelected()){
                         App.tm.toDoLists.get(App.currentList).markItemAsComplete(finalX);
+                        System.out.println( App.tm.toDoLists.get(App.currentList).toDoList.get(finalX).isComplete);
                     }
-                    else{
+                    else if(!radioButtons[finalX].isSelected()){
                         App.tm.toDoLists.get(App.currentList).markItemAsIncomplete(finalX);
+                        System.out.println( App.tm.toDoLists.get(App.currentList).toDoList.get(finalX).isComplete);
                     }
 
                 }
             });
 
 
-            descriptions[x].setText(toDoList.toDoList.get(x).description);
+            descriptions[x].setText(items.get(x).description);
             descriptions[x].setPrefSize(166, 18);
             descriptions[x].setFont(new Font(18));
 
-            dateDue[x].setText(toDoList.toDoList.get(x).dueDate.toString());
+            dateDue[x].setText(items.get(x).dueDate.toString());
             dateDue[x].setPrefSize(105,27);
             dateDue[x].setFont(new Font(18));
 
@@ -99,7 +113,15 @@ public class ToDoListViewController {
             deleteItemButtons[x].setFont(new Font(14));
             deleteItemButtons[x].setOnAction(new EventHandler<ActionEvent>() {
                 @Override public void handle(ActionEvent e) {
-                    App.tm.toDoLists.get(App.currentList).removeItem(finalX);//needed another x variable to work, not gonna question it
+                    if(App.sortByValue==0) {
+                        App.tm.toDoLists.get(App.currentList).removeItem(finalX);//needed another x variable to work, not gonna question it
+                    }
+                    else if(App.sortByValue==1) {
+                        App.tm.toDoLists.get(App.currentList).removeCompleteItem(finalX);//needed another x variable to work, not gonna question it
+                    }
+                    else if(App.sortByValue==2) {
+                        App.tm.toDoLists.get(App.currentList).removeIncompleteItem(finalX);//needed another x variable to work, not gonna question it
+                    }
                     displayToDoList();
                 }
             });
@@ -139,7 +161,7 @@ public class ToDoListViewController {
         mainController.displayLists();
         //shows stage
         secondStage.show();
-
+        App.sortByValue=0;
         Stage curStage = (Stage) backButton.getScene().getWindow();
         curStage.close();
     }

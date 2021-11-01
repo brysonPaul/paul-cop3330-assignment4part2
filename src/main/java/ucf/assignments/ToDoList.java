@@ -11,20 +11,27 @@ import java.util.Date;
 public class ToDoList {
     public String title;
     public ArrayList<ToDoItem> toDoList;//can do 100 or more, so is a good thing to use
+    public ArrayList<ToDoItem> completeItems;
+    public ArrayList<ToDoItem> incompleteItems;
     public ToDoList(){
 
         this.title = " ";
         this.toDoList = new ArrayList<>();
-
+        this.completeItems = new ArrayList<>();
+        this.incompleteItems = new ArrayList<>();
     }
     public ToDoList(String title){
 
         this.title =title;
         this.toDoList = new ArrayList<>();
+        this.completeItems = new ArrayList<>();
+        this.incompleteItems = new ArrayList<>();
     }
     public ToDoList(String title, ArrayList<ToDoItem> t){
         this.title = title;
         this.toDoList = t;
+        this.completeItems = new ArrayList<>();
+        this.incompleteItems = new ArrayList<>();
     }
 
     public void addItem(ToDoItem t){
@@ -33,6 +40,16 @@ public class ToDoList {
     public ToDoItem removeItem(int index){
 
            return toDoList.remove(index);
+    }
+    public ToDoItem removeCompleteItem(int index){
+        ToDoItem t =completeItems.remove(index);
+        toDoList.remove(t);
+        return t;
+    }
+    public ToDoItem removeIncompleteItem(int index){
+        ToDoItem t = incompleteItems.remove(index);
+        toDoList.remove(t);
+        return t;
     }
     public void setTitle(String s){
         this.title=s;
@@ -48,23 +65,36 @@ public class ToDoList {
         toDoList.get(index).markAsComplete();
     }
     public void markItemAsIncomplete(int index){toDoList.get(index).markAsIncomplete();}
-    public ToDoList sortByCompleteItems(){
-        ArrayList<ToDoItem> aList= new ArrayList<>();
-        for(ToDoItem t :this.toDoList){
-            if(t.isComplete){
-                aList.add(t);
-            }
-        }
-        return new ToDoList(this.title,aList);
-    }
-    public ToDoList sortByIncompleteItems(){
-        ArrayList<ToDoItem> aList= new ArrayList<>();
-        for(ToDoItem t :this.toDoList){
+    public void sortByCompleteItems(){
+
+        for(ToDoItem t: this.completeItems){
             if(!t.isComplete){
-                aList.add(t);
+                this.completeItems.remove(t);
+                sortByCompleteItems();
+                return;
             }
         }
-        return new ToDoList(this.title,aList);
+        for(ToDoItem t :this.toDoList){
+            if(t.isComplete && !this.completeItems.contains(t)){
+                this.completeItems.add(t);
+            }
+        }
+    }
+    public void sortByIncompleteItems(){
+
+        for(ToDoItem t: this.incompleteItems){
+            if(t.isComplete){
+                this.incompleteItems.remove(t);
+                sortByIncompleteItems();
+                return;
+            }
+        }
+        for(ToDoItem t :this.toDoList){
+            if(!t.isComplete && !this.incompleteItems.contains(t)){
+                this.incompleteItems.add(t);
+            }
+        }
+
     }
     public void saveToDoList(String path){
         /*

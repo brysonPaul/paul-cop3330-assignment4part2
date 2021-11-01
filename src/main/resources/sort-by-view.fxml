@@ -17,17 +17,17 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button layoutX="60.0" layoutY="160.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="470.0" text="Display all existing items">
+      <Button fx:id="sortByExistingItemsButton" layoutX="60.0" layoutY="160.0" mnemonicParsing="false" onAction="#sortByExistingItems" prefHeight="40.0" prefWidth="470.0" text="Display all existing items">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="65.0" layoutY="305.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="470.0" text="Display all incomplete items">
+      <Button fx:id="sortByIncompleteItemsButton" layoutX="65.0" layoutY="305.0" mnemonicParsing="false" onAction="#sortByIncompleteItems" prefHeight="40.0" prefWidth="470.0" text="Display all incomplete items">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="65.0" layoutY="235.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="470.0" text="Display all completed items">
+      <Button fx:id="sortByCompleteItemsButton" layoutX="65.0" layoutY="235.0" mnemonicParsing="false" onAction="#sortByCompleteItems" prefHeight="40.0" prefWidth="470.0" text="Display all completed items">
          <font>
             <Font size="18.0" />
          </font>
