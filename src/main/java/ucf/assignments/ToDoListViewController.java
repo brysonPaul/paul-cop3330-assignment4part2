@@ -66,8 +66,21 @@ public class ToDoListViewController {
             radioButtons[x].setPrefSize(28,27);
             radioButtons[x].setFont(new Font(18));
             if(toDoList.toDoList.get(x).isComplete){
-                radioButtons[x].isArmed();
+                radioButtons[x].setSelected(true);
             }
+            else radioButtons[x].setSelected(false);
+            radioButtons[x].setOnAction(new EventHandler<ActionEvent>() {
+                @Override public void handle(ActionEvent e) {
+                    if(radioButtons[finalX].isSelected()){
+                        App.tm.toDoLists.get(App.currentList).markItemAsComplete(finalX);
+                    }
+                    else{
+                        App.tm.toDoLists.get(App.currentList).markItemAsIncomplete(finalX);
+                    }
+
+                }
+            });
+
 
             descriptions[x].setText(toDoList.toDoList.get(x).description);
             descriptions[x].setPrefSize(166, 18);
@@ -84,9 +97,18 @@ public class ToDoListViewController {
             deleteItemButtons[x].setText("-");
             deleteItemButtons[x].setPrefSize(29,30);
             deleteItemButtons[x].setFont(new Font(14));
+            deleteItemButtons[x].setOnAction(new EventHandler<ActionEvent>() {
+                @Override public void handle(ActionEvent e) {
+                    App.tm.toDoLists.get(App.currentList).removeItem(finalX);//needed another x variable to work, not gonna question it
+                    displayToDoList();
+                }
+            });
 
-            //places each group to an HBOX (melee reference??)
-            listsWithElements[x] = new HBox(12.0,radioButtons[x],descriptions[x],dateDue[x],editItemButtons[x],deleteItemButtons[x]);
+            //places each group to an HBOX (melee reference??). This one has two hboxes into one hbox because spacing looks better this way
+            HBox one = new HBox(125,radioButtons[x],descriptions[x]);
+            one.setAlignment(Pos.CENTER_RIGHT);
+            HBox two = new HBox(12,dateDue[x],editItemButtons[x],deleteItemButtons[x]);
+            listsWithElements[x]= new HBox(one,two);
             listsWithElements[x].setAlignment(Pos.CENTER);
         }
         //places each hbox into one vbox
@@ -99,7 +121,14 @@ public class ToDoListViewController {
 
     @FXML
     private void loadSortView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sort-by-view.fxml"));
+        Stage secondStage = new Stage();
+        secondStage.setScene(new Scene(loader.load()));
+        //shows stage
+        secondStage.show();
 
+        Stage curStage = (Stage) addItemButton.getScene().getWindow();
+        curStage.close();
     }
     @FXML private void loadOnOpenView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/on-open-view.fxml"));

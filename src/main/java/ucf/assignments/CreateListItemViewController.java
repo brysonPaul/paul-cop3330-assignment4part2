@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 /*
  *  UCF COP3330 Fall 2021 Assignment 4 Solution
@@ -41,10 +42,14 @@ public class CreateListItemViewController {
     }
 
     @FXML
-    private void onCreateButtonClick(ActionEvent event) throws IOException {//not working completely yet
+    private void onCreateButtonClick(ActionEvent event) throws IOException {
+        if(dateChosen.getValue()==null || description.equals(null)){//good way to make sure no null ref :)
+            onCancelButtonClick(event);
+            return;
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/in-to-do-list-view.fxml"));
         Parent root= loader.load();
-        App.tm.toDoLists.get(App.currentList).addItem(new ToDoItem(description.getText()));//this line is not working, look at it later
+        App.tm.toDoLists.get(App.currentList).addItem(new ToDoItem(description.getText(),dateChosen.getValue()));
         ToDoListViewController controller = loader.getController();
         controller.displayToDoList();
         Stage s= new Stage();

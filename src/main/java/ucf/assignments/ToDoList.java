@@ -22,9 +22,13 @@ public class ToDoList {
         this.title =title;
         this.toDoList = new ArrayList<>();
     }
+    public ToDoList(String title, ArrayList<ToDoItem> t){
+        this.title = title;
+        this.toDoList = t;
+    }
 
     public void addItem(ToDoItem t){
-            toDoList.add(t);
+            toDoList.add(new ToDoItem(t));
     }
     public ToDoItem removeItem(int index){
 
@@ -43,49 +47,24 @@ public class ToDoList {
     public void markItemAsComplete(int index){
         toDoList.get(index).markAsComplete();
     }
-    public void displayExistingItems() {
-        displayItems(this.toDoList);
+    public void markItemAsIncomplete(int index){toDoList.get(index).markAsIncomplete();}
+    public ToDoList sortByCompleteItems(){
+        ArrayList<ToDoItem> aList= new ArrayList<>();
+        for(ToDoItem t :this.toDoList){
+            if(t.isComplete){
+                aList.add(t);
+            }
+        }
+        return new ToDoList(this.title,aList);
     }
-    public void displayCompletedItems(){
-    //    ArrayList<ToDoItem> a = sortByCompleteItems(this.toDoList);
-      //  displayItems(a);
-    }
-    public void displayIncompleteItems(){
-     /*
-        ArrayList<ToDoItem> a = sortByIncompleteItems(this.toDoList)
-        displayItems(a)
-      */
-    }
-    public ArrayList<ToDoItem> sortByCompleteItems(){
-        /*
-        ArrayList<ToDoItem> aList= new ArrayList<>()
-        for ToDoItem i in this.toDoList
-            if i.isComplete()
-                aList.add(i);
-            end if
-        end loop
-        return aList
-      */
-        return new ArrayList<>();
-    }
-    public ArrayList<ToDoItem> sortByIncompleteItems(){
-        /*
-        ArrayList<ToDoItem> aList= new ArrayList<>()
-        for ToDoItem i in this.toDoList
-            if !i.isComplete()
-                aList.add(i);
-            end if
-        end loop
-        return aList
-      */
-        return new ArrayList<>();
-    }
-    public void displayItems(ArrayList<ToDoItem> i){
-        /*
-        for ToDoItem item in i
-            item.display()
-        end loop
-      */
+    public ToDoList sortByIncompleteItems(){
+        ArrayList<ToDoItem> aList= new ArrayList<>();
+        for(ToDoItem t :this.toDoList){
+            if(!t.isComplete){
+                aList.add(t);
+            }
+        }
+        return new ToDoList(this.title,aList);
     }
     public void saveToDoList(String path){
         /*

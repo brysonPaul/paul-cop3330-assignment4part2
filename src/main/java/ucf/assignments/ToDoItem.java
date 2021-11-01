@@ -12,7 +12,6 @@ public class ToDoItem {
     public LocalDate dueDate;
     public boolean isComplete;
     public ToDoItem(String description , LocalDate dueDate){
-
         this.description = description;
         this.dueDate = dueDate;
         this.isComplete = false;
@@ -21,6 +20,11 @@ public class ToDoItem {
 
         this.description = description;
         this.isComplete = false;
+    }
+    public ToDoItem(ToDoItem t){
+        this.description=t.description;
+        this.dueDate=t.dueDate;
+        this.isComplete=t.isComplete;
     }
     public void setDescription(String s){
         /*
@@ -31,9 +35,11 @@ public class ToDoItem {
         this.dueDate = d;
     }
     public void markAsComplete(){
-        /*
-        this.isComplete = true
-         */
+
+        this.isComplete = true;
+    }
+    public void markAsIncomplete(){
+        this.isComplete = false;
     }
     public void display(){
         /*
