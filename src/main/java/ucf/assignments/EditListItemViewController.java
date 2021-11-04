@@ -41,7 +41,19 @@ public class EditListItemViewController {
     }
     @FXML
     private void onOkayButtonClick(ActionEvent event) throws IOException{
-        if(description.getText().length()==0){
+        if(description.getText().length()==0 && datePicker.getValue()!=null){
+            App.tm.toDoLists.get(App.currentList).toDoList.get(App.currentItem).dueDate=datePicker.getValue();
         }
+        else if(description.getText().length()!=0 && datePicker.getValue()==null){
+            App.tm.toDoLists.get(App.currentList).toDoList.get(App.currentItem).description=description.getText();
+        }
+        else if(description.getText().length()==0 && datePicker.getValue()==null){
+            loadToDoListView(event);
+        }
+        else{
+            App.tm.toDoLists.get(App.currentList).toDoList.get(App.currentItem).description=description.getText();
+            App.tm.toDoLists.get(App.currentList).toDoList.get(App.currentItem).dueDate=datePicker.getValue();
+        }
+        loadToDoListView(event);
     }
 }

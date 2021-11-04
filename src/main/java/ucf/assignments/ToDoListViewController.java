@@ -124,7 +124,15 @@ public class ToDoListViewController {
         editItemButton.setText("Edit");
         editItemButton.setPrefSize(74,30);
         editItemButton.setFont(new Font(14));
-
+        editItemButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                try {
+                    loadEditItemView(e,x);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         deleteItemButton.setText("-");
         deleteItemButton.setPrefSize(29,30);
@@ -178,13 +186,13 @@ public class ToDoListViewController {
         curStage.close();
     }
     @FXML private void loadEditItemView(ActionEvent event,int i) throws IOException {
-//        App.currentItem=i; //CURRENT SORTED OR NOT ITEM BTWWW
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/edit-to-do-list-item.fxml"));
-//        Stage secondStage = new Stage();
-//        secondStage.setScene(new Scene(loader.load()));
-//        //shows stage
-//        secondStage.show();
-//        Stage curStage = (Stage) addItemButton.getScene().getWindow();
-//        curStage.close();
+        App.currentItem=i;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/edit-to-do-list-item.fxml"));
+        Stage secondStage = new Stage();
+        secondStage.setScene(new Scene(loader.load()));
+        //shows stage
+        secondStage.show();
+        Stage curStage = (Stage) addItemButton.getScene().getWindow();
+        curStage.close();
     }
 }
