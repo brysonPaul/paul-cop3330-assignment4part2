@@ -24,7 +24,7 @@ public class ToDoItem {
     public ToDoItem(ToDoItem t){
         this.description=t.description;
         this.dueDate=t.dueDate;
-        this.isComplete=false;
+        this.isComplete=t.isComplete;
     }
     public void setDescription(String s){
          this.description = s;

@@ -3,4 +3,9 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="12" />
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="paul-cop3330-assignment14.main" options="--add-exports java.base/java=ucf.assignments" />
+    </option>
+  </component>
 </project>

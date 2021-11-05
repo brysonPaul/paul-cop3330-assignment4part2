@@ -45,6 +45,10 @@ public class ToDoListViewController {
     @FXML private Label title;
 
 
+
+    public ArrayList<ToDoItem> displayToDoList(ToDoList t,int val){//testing version, no fxml needed
+      return display(t.toDoList,val);
+    }
     @FXML public void displayToDoList(){
         display(App.tm.toDoList);
     }
@@ -77,6 +81,40 @@ public class ToDoListViewController {
         listsVert.setAlignment(Pos.BASELINE_CENTER);
         toDoListItemAnchorPane.getChildren().clear();
         toDoListItemAnchorPane.getChildren().add(listsVert);
+    }
+    @FXML private ArrayList<ToDoItem> display(ArrayList<ToDoItem> items,int sortByValue){//test version of display
+        int size =items.size();
+        ArrayList<ToDoItem> itemsBeingDisplayed = new ArrayList<>();
+
+        for (int x = 0; x < size; x++) {
+            if(sortByValue==0)
+            {
+                // listsWithElements.add(createItemHbox(x,items.get(x)));
+                itemsBeingDisplayed.add(items.get(x));
+            }
+            else if(sortByValue==1 && items.get(x).isComplete){
+                //listsWithElements.add(createItemHbox(x,items.get(x)));
+                itemsBeingDisplayed.add(items.get(x));
+            }
+            else if(sortByValue==2 && !items.get(x).isComplete){
+                //listsWithElements.add(createItemHbox(x,items.get(x)));
+                itemsBeingDisplayed.add(items.get(x));
+            }
+        }
+        //toDoListItemAnchorPane.setPrefSize(600,50*listsWithElements.size());
+//        VBox listsVert;
+//        try {
+//            HBox[] h= toHboxArray(listsWithElements);
+//            listsVert = new VBox(10.0, h );
+//        }
+//        catch (ClassCastException ex){
+//            System.out.println("checking123");
+//            listsVert = new VBox();
+//        }
+//        listsVert.setAlignment(Pos.BASELINE_CENTER);
+//        toDoListItemAnchorPane.getChildren().clear();
+//        toDoListItemAnchorPane.getChildren().add(listsVert);
+        return itemsBeingDisplayed;//returning this so it can be tested in the future
     }
     private HBox[] toHboxArray(ArrayList<HBox> src){
         HBox[] h= new HBox[src.size()];
