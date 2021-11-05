@@ -17,10 +17,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.DataInput;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Queue;
 
 /*
  *  UCF COP3330 Fall 2021 Assignment 4 Solution
@@ -34,18 +37,19 @@ public class ToDoListViewController {
     @FXML
     private Button addItemButton;
     @FXML
+    private Button saveButton;
+    @FXML
+    private Button loadButton;
+    @FXML
     private AnchorPane toDoListItemAnchorPane;
     @FXML private Label title;
 
 
     @FXML public void displayToDoList(){
-        title.setText(App.tm.toDoLists.get(App.currentList).title);
-        display(App.tm.toDoLists.get(App.currentList).toDoList);
-
+        display(App.tm.toDoList);
     }
     @FXML private void display(ArrayList<ToDoItem> items){
         int size =items.size();
-
         ArrayList<HBox> listsWithElements = new ArrayList<HBox>();
 
         for (int x = 0; x < size; x++) {
@@ -60,8 +64,7 @@ public class ToDoListViewController {
                 listsWithElements.add(createItemHbox(x,items.get(x)));
             }
         }
-        //places each hbox into one vbox
-        //TODO: PLEASE AND I MEAN PLEASE ADD THE THING THAT ALLOWS THE ANCHOR PANE TO RESIZE IF TOO MANY ELEMENTS ARE HERE
+        toDoListItemAnchorPane.setPrefSize(600,50*listsWithElements.size());
         VBox listsVert;
         try {
             HBox[] h= toHboxArray(listsWithElements);
@@ -101,12 +104,12 @@ public class ToDoListViewController {
         radioButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 if(radioButton.isSelected()){
-                    App.tm.toDoLists.get(App.currentList).markItemAsComplete(x);
-                    System.out.println( App.tm.toDoLists.get(App.currentList).toDoList.get(x).isComplete);
+                    App.tm.markItemAsComplete(x);
+                    System.out.println( App.tm.toDoList.get(x).isComplete);
                 }
                 else if(!radioButton.isSelected()){
-                    App.tm.toDoLists.get(App.currentList).markItemAsIncomplete(x);
-                    System.out.println( App.tm.toDoLists.get(App.currentList).toDoList.get(x).isComplete);
+                    App.tm.markItemAsIncomplete(x);
+                    System.out.println( App.tm.toDoList.get(x).isComplete);
                 }
 
             }
@@ -139,7 +142,7 @@ public class ToDoListViewController {
         deleteItemButton.setFont(new Font(14));
         deleteItemButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                ToDoItem t= App.tm.toDoLists.get(App.currentList).removeItem(x);//needed another x variable to work, not gonna question it
+                ToDoItem t= App.tm.removeItem(x);//needed another x variable to work, not gonna question it
                 displayToDoList();
             }
         });
@@ -162,19 +165,6 @@ public class ToDoListViewController {
         Stage curStage = (Stage) addItemButton.getScene().getWindow();
         curStage.close();
     }
-    @FXML private void loadOnOpenView(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/on-open-view.fxml"));
-        Stage secondStage = new Stage();
-        secondStage.setScene(new Scene(loader.load()));
-        //this makes the thing display the list. but it in anything that goes back to the main method
-        AppController mainController = loader.getController();
-        mainController.displayLists();
-        //shows stage
-        secondStage.show();
-        App.sortByValue=0;
-        Stage curStage = (Stage) backButton.getScene().getWindow();
-        curStage.close();
-    }
     @FXML private void loadAddItemView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/new-to-do-list-item-view.fxml"));
         Stage secondStage = new Stage();
@@ -194,5 +184,19 @@ public class ToDoListViewController {
         secondStage.show();
         Stage curStage = (Stage) addItemButton.getScene().getWindow();
         curStage.close();
+    }
+    @FXML private void onSaveButtonClick(ActionEvent e) throws IOException {
+        String dirPath = System.getProperty("user.home")+System.getProperty("file.separator")
+                +"Desktop"+System.getProperty("file.separator")
+                +"Saves"+System.getProperty("file.separator")+"save.txt";
+        String s = App.tm.saveToDoList(dirPath);
+        saveButton.setText("Saved");
+    }
+    @FXML private void onLoadButtonClick(ActionEvent e) throws FileNotFoundException {
+        String dirPath = System.getProperty("user.home")+System.getProperty("file.separator")
+                +"Desktop"+System.getProperty("file.separator")
+                +"Saves"+System.getProperty("file.separator")+"save.txt";
+        App.tm.loadToDoList(dirPath);
+        displayToDoList();
     }
 }

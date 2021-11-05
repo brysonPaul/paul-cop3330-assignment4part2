@@ -1,8 +1,14 @@
 package ucf.assignments;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Scanner;
+
+import com.google.gson.*;
 
 /*
  *  UCF COP3330 Fall 2021 Assignment 4 Solution
@@ -28,22 +34,12 @@ public class ToDoList {
     }
 
     public void addItem(ToDoItem t){
-            toDoList.add(new ToDoItem(t));
+            toDoList.add(t);
     }
     public ToDoItem removeItem(int index){
 
            return toDoList.remove(index);
     }
-//    public ToDoItem removeCompleteItem(int index){
-//        ToDoItem t =completeItems.remove(index);
-//        toDoList.remove(t);
-//        return t;
-//    }
-//    public ToDoItem removeIncompleteItem(int index){
-//        ToDoItem t = incompleteItems.remove(index);
-//        toDoList.remove(t);
-//        return t;
-//    }
     public void setTitle(String s){
         this.title=s;
     }
@@ -58,63 +54,48 @@ public class ToDoList {
         toDoList.get(index).markAsComplete();
     }
     public void markItemAsIncomplete(int index){toDoList.get(index).markAsIncomplete();}
-//    public void sortByCompleteItems(){
-//
-//        for(ToDoItem t: this.completeItems){
-//            if(!t.isComplete){
-//                this.completeItems.remove(t);
-//                sortByCompleteItems();
-//                return;
-//            }
-//        }
-//        for(ToDoItem t :this.toDoList){
-//            if(t.isComplete && !this.completeItems.contains(t)){
-//                this.completeItems.add(t);
-//            }
-//        }
-//    }
-//    public void sortByIncompleteItems(){
-//
-//        for(ToDoItem t: this.incompleteItems){
-//            if(t.isComplete){
-//                this.incompleteItems.remove(t);
-//                sortByIncompleteItems();
-//                return;
-//            }
-//        }
-//        for(ToDoItem t :this.toDoList){
-//            if(!t.isComplete && !this.incompleteItems.contains(t)){
-//                this.incompleteItems.add(t);
-//            }
-//        }
-//
-//    }
-    public void saveToDoList(String path){
-        /*
-         Gson gson = new Gson()
-         gson.toJson(this, new FileWriter(path))
-         */
+    public String saveToDoList(String path) throws IOException { //saves a to do list to the path given
+        File f = new File(path);
+        f.getParentFile().mkdirs();
+        if(!f.exists()){
+            f.createNewFile();
+        }
+        Gson gson = new Gson();
+        FileWriter fw= new FileWriter(path);
+        String s= gson.toJson(this);
+        fw.write(s);
+        fw.close();
+        return s;
     }
-    //this one will be called when saving every single to do list
-    public String saveToDoList(){
-        return "";
-     /*
-      Gson gson = new Gson()
-      return gson.toJson(this)
-      */
+    public ToDoList loadToDoList(String path) throws FileNotFoundException {//loads the to do list using the path given
+        String jsonString =getJsonString(path);
+        if(jsonString.equals("-1")){
+            return new ToDoList();
+        }
+        Gson gson = new Gson();
+        ToDoList t =gson.fromJson(jsonString, this.getClass());
+        addToDoListItemsToCurrentList(t);
+        return t;
     }
-    //for single to do list
-    public ToDoList loadToDoList(String path){
-        /*
-        File f= new File(path);
-        sc= new Scanner(f)
-        s = " "
-        while sc.hasNextLine
-            s+=sc.next
-        end loop
-        Gson gson = new Gson()
-        return gson.fromJson(s)
-         */
-        return new ToDoList();
+    private String getJsonString(String path) throws FileNotFoundException {
+        String s = "";
+        try {
+            File f = new File(path);
+            Scanner sc = new Scanner(f);
+            s = " ";
+            while (sc.hasNextLine()){
+                s += sc.next();
+            }
+        }
+        catch (FileNotFoundException ex){
+            return "-1";
+        }
+        return s;
+
+    }
+    public void addToDoListItemsToCurrentList(ToDoList t){
+        for(int x=0;x<t.toDoList.size();x++){
+            this.addItem(t.toDoList.get(x));
+        }
     }
 }

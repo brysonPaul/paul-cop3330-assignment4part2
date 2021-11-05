@@ -9,9 +9,9 @@ import java.util.Date;
  */
 public class ToDoItem {
     public String description;
-    public LocalDate dueDate;
+    public String dueDate;
     public boolean isComplete;
-    public ToDoItem(String description , LocalDate dueDate){
+    public ToDoItem(String description ,String dueDate){
         this.description = description;
         this.dueDate = dueDate;
         this.isComplete = false;
@@ -30,7 +30,10 @@ public class ToDoItem {
          this.description = s;
     }
     public void setDueDate(LocalDate d){
-        this.dueDate = d;
+        this.dueDate = d.toString();
+    }
+    public void setDueDate(String s){
+        this.dueDate = s;
     }
     public void markAsComplete(){
 
@@ -38,10 +41,5 @@ public class ToDoItem {
     }
     public void markAsIncomplete(){
         this.isComplete = false;
-    }
-    public void display(){
-        /*
-            Gui.display(this.dueDate,this.date,this.isComplete)
-         */
     }
 }

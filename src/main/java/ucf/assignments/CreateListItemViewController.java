@@ -49,7 +49,7 @@ public class CreateListItemViewController {
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/in-to-do-list-view.fxml"));
         Parent root= loader.load();
-        App.tm.toDoLists.get(App.currentList).addItem(new ToDoItem(description.getText(),dateChosen.getValue()));
+        App.tm.addItem(new ToDoItem(description.getText(),dateChosen.getValue().toString()));
         ToDoListViewController controller = loader.getController();
         controller.displayToDoList();
         Stage s= new Stage();
