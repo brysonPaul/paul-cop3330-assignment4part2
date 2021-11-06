@@ -40,15 +40,32 @@ public class ToDoListViewController {
     @FXML
     private AnchorPane toDoListItemAnchorPane;
 
-
-
-
+    //return display(t.toDoList)//testing version, same pseudo as other one
     public ArrayList<ToDoItem> displayToDoList(ToDoList t,int val){//testing version, no fxml needed
       return display(t.toDoList,val);
     }
+
+    //return display(t.toDoList)
     @FXML public void displayToDoList(){
         display(App.tm.toDoList);
     }
+
+    /*
+        size = items.size();
+        listWithElements = new ArrayList<>();
+        for x=0;x<size;x++
+            if App.sortByValue == 0
+                listWithElements.add(createItemHbox(x,items.get(x)))
+            else if App.sortByValue == 1
+                listWithElements.add(createItemHbox(x,items.get(x)))
+            else if App.sortByValue == 2
+                listWithElements.add(createItemHbox(x,items.get(x)))
+            end if
+        end loop
+        Vbox v = new Vbox(spacing, listsWithElements)
+        toDoListItemAnchorPane.getChildren().clear()
+        toDoListItemAnchorPane.getChildren().add(listsVert)
+     */
     @FXML private void display(ArrayList<ToDoItem> items){
         int size =items.size();
         ArrayList<HBox> listsWithElements = new ArrayList<HBox>();
@@ -79,6 +96,22 @@ public class ToDoListViewController {
         toDoListItemAnchorPane.getChildren().clear();
         toDoListItemAnchorPane.getChildren().add(listsVert);
     }
+    /*//same pseudo as above because it is just the test version!
+        size = items.size();
+        listWithElements = new ArrayList<>();
+        for x=0;x<size;x++
+            if App.sortByValue == 0
+                listWithElements.add(createItemHbox(x,items.get(x)))
+            else if App.sortByValue == 1
+                listWithElements.add(createItemHbox(x,items.get(x)))
+            else if App.sortByValue == 2
+                listWithElements.add(createItemHbox(x,items.get(x)))
+            end if
+        end loop
+        Vbox v = new Vbox(spacing, listsWithElements)
+        toDoListItemAnchorPane.getChildren().clear()
+        toDoListItemAnchorPane.getChildren().add(listsVert)
+     */
     @FXML private ArrayList<ToDoItem> display(ArrayList<ToDoItem> items,int sortByValue){//test version of display
         int size =items.size();
         ArrayList<ToDoItem> itemsBeingDisplayed = new ArrayList<>();
@@ -113,6 +146,13 @@ public class ToDoListViewController {
 //        toDoListItemAnchorPane.getChildren().add(listsVert);
         return itemsBeingDisplayed;//returning this so it can be tested in the future
     }
+    /*
+        HBox[] h = new HBox[]
+        for x=0;x<h.length;x++
+            h[x]=src.get(x)
+        end loop
+        return h
+   */
     private HBox[] toHboxArray(ArrayList<HBox> src){
         HBox[] h= new HBox[src.size()];
         for(int x=0;x<h.length;x++){
@@ -120,7 +160,39 @@ public class ToDoListViewController {
         }
         return h;
     }
+    /*
+        RadioButton radioButton = new RadioButton()
+        radioButton.setText("")
+        radioButton.setPrefSize(width,height)
+        radioButton.setFont()
+        if item.isComplete
+            radioButton.setSelected(true)
+            else
+                radioButton.setSelected(false)
+        end if
 
+        Button description = new Button()
+        description.setText(item.description)
+        description.setPrefSize(width,height)
+        description.setFont()
+
+        Label dateDue = new Label()
+        dateDue.setText(item.dueDate.toString())
+        dateDue.setPrefSize(width,height)
+        dateDue.setFont()
+
+        Button editItemButton = new Button()
+        editItemButton.setText("Edit");
+        editItemButton.setPrefSize(width,height);
+        editItemButton.setFont();
+
+        Button deleteItemButton = new Button()
+        deleteItemButton.setText("-")
+        deleteItemButton.setPrefSize(width,height)
+        deleteItemButton.setFont()
+
+        return new HBox(all the items made above)
+   */
     private HBox createItemHbox(int x, ToDoItem item){
 
         RadioButton radioButton = new RadioButton();
@@ -196,7 +268,11 @@ public class ToDoListViewController {
         HBox two = new HBox(12,dateDue,editItemButton,deleteItemButton);
         return new HBox(30,one,two);
     }
-
+    /*
+    loader = new FXMLLoader(sort by view)
+    showNewStage()
+    closeCurrentStage()
+   */
     @FXML
     private void loadSortView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sort-by-view.fxml"));
@@ -208,6 +284,11 @@ public class ToDoListViewController {
         Stage curStage = (Stage) sortByButton.getScene().getWindow();
         curStage.close();
     }
+    /*
+     loader = new FXMLLoader(new to do list item view)
+     showNewStage()
+     closeCurrentStage()
+     */
     @FXML private void loadAddItemView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/new-to-do-list-item-view.fxml"));
         Stage secondStage = new Stage();
@@ -218,6 +299,11 @@ public class ToDoListViewController {
         Stage curStage = (Stage) addItemButton.getScene().getWindow();
         curStage.close();
     }
+    /*
+     loader = new FXMLLoader(edit to do list item view)
+     showNewStage()
+     closeCurrentStage()
+     */
     @FXML private void loadEditItemView(ActionEvent event,int i) throws IOException {
         App.currentItem=i;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/edit-to-do-list-item.fxml"));
@@ -228,6 +314,11 @@ public class ToDoListViewController {
         Stage curStage = (Stage) addItemButton.getScene().getWindow();
         curStage.close();
     }
+    /*
+     String dirPath = "pathToSaves"
+     App.tm.saveToDoList(dirPath)
+     saveButton.setText(saved)
+     */
     @FXML private void onSaveButtonClick(ActionEvent e) throws IOException {
         String dirPath = System.getProperty("user.home")+System.getProperty("file.separator")
                 +"Desktop"+System.getProperty("file.separator")
@@ -235,6 +326,11 @@ public class ToDoListViewController {
         String s = App.tm.saveToDoList(dirPath);
         saveButton.setText("Saved");
     }
+    /*
+        String dirPath = "pathToSaves"
+        App.tm.loadToDoList(dirPath)
+        displayToDoList
+    */
     @FXML private void onLoadButtonClick(ActionEvent e) throws FileNotFoundException {
         String dirPath = System.getProperty("user.home")+System.getProperty("file.separator")
                 +"Desktop"+System.getProperty("file.separator")
@@ -242,10 +338,20 @@ public class ToDoListViewController {
         App.tm.loadToDoList(dirPath);
         displayToDoList();
     }
+    /*
+     App.tm.clearAllItems()
+     displayToDoList()
+     */
     @FXML private void onClearAllButtonClick(ActionEvent e){
         App.tm.clearAllItems();
         displayToDoList();
     }
+    /*
+     loader = new FXMLLoader(in description view)
+     ToDoListViewController c = loader.getController
+     controller.setDescLabel(i)
+     showStage()
+     */
     @FXML private void  loadBiggerDescriptionView(ActionEvent e, int i) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/in-description-field-view.fxml"));
         Stage stage = new Stage();

@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
  */
 public class DescriptionFieldController {
     @FXML private Label descLabel;
+    //descLabel.setText(app.tm.toDoList.get(index).description)
     @FXML public void setDescLabel(int index){
         descLabel.setText(App.tm.toDoList.get(index).description);
     }

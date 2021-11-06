@@ -24,7 +24,8 @@ import java.time.LocalDate;
  *  Copyright 2021 Bryson Paul
  */
 public class App extends Application {
-    public static ToDoList tm = new ToDoList("To Do List");
+    public static ToDoList tm = new ToDoList("To Do List");//tm stands for To Do Manager. Didnt want to name it toDoList,
+    //because it would get confusing with its arrayList :)
     public static Integer currentItem=0;
     public static Integer sortByValue=0;//0 means existing, 1 is completed, 2 is incomplete items
     @Override

@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,6 +26,14 @@ public class EditListItemViewController {
     @FXML
     private Button okayButton;
 
+    /*
+     loader = new FXMLLoader(in to do list view)
+     Parent root = loader.load();
+     ToDoListViewController c = loader.getController
+     controller.displayToDoList
+     showStage()
+     closeCurStage();
+     */
     @FXML
     private void loadToDoListView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/in-to-do-list-view.fxml"));
@@ -39,6 +46,11 @@ public class EditListItemViewController {
         Stage secondStage = (Stage) backButton.getScene().getWindow();
         secondStage.close();
     }
+    /*
+     App.tm.toDoList.get(App.currentItem).description=description.getText()
+     App.tm.toDoList.get(App.currentItem).dueDate=datePicker.getValue().toString()
+     loadToDoListView(event)
+     */
     @FXML
     private void onOkayButtonClick(ActionEvent event) throws IOException{
         if(description.getText().length()==0 && datePicker.getValue()!=null){

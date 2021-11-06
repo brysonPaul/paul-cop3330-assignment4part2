@@ -25,6 +25,14 @@ public class CreateListItemViewController {
     @FXML
     private Button createButton;
 
+    /*
+    loader = new FXMLLoader(in to do list view)
+    Parent root = loader.load();
+    ToDoListViewController c = loader.getController
+    controller.displayToDoList
+    showStage()
+    closeCurStage();
+    */
     @FXML
     private void onCancelButtonClick(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/in-to-do-list-view.fxml"));
@@ -38,6 +46,20 @@ public class CreateListItemViewController {
         secondStage.close();
     }
 
+    /*
+    if dateChosen.getValue()==null || description.equals(null)
+        onCancelButtonClick(event)
+        return
+    end if
+
+    loader = new FXMLLoader(in to do list view)
+    Parent root = loader.load()
+    App.tm.addItem(new ToDoItem(description.getText(),dateChosen.getValue().toString()))
+    ToDoListViewController c = loader.getController
+    controller.displayToDoList
+    showStage()
+    closeCurStage()
+    */
     @FXML
     private void onCreateButtonClick(ActionEvent event) throws IOException {
         if(dateChosen.getValue()==null || description.equals(null)){//good way to make sure no null ref :)

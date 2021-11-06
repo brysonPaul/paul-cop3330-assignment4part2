@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +17,14 @@ import java.io.IOException;
 public class SortByViewController {
     private Button backButton;
 
+    /*
+     loader = new FXMLLoader(in to do list view)
+     Parent root = loader.load();
+     ToDoListViewController c = loader.getController
+     controller.displayToDoList
+     showStage()
+     closeCurStage();
+     */
     @FXML
     private void loadToDoListView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/in-to-do-list-view.fxml"));
@@ -30,20 +37,32 @@ public class SortByViewController {
         Stage secondStage = (Stage) backButton.getScene().getWindow();
         secondStage.close();
     }
+
+    /*
+    App.sortByValue = 0
+    loadToDoListView()
+     */
     @FXML
     private void sortByExistingItems(ActionEvent event) throws IOException {
-            App.sortByValue=0;
+            App.sortByValue = 0;
             loadToDoListView(event);
     }
+     /*
+    App.sortByValue = 1
+    loadToDoListView()
+      */
     @FXML
     private void sortByCompleteItems(ActionEvent event) throws IOException {
             App.sortByValue=1;
             loadToDoListView(event);
     }
+     /*
+    App.sortByValue = 2
+    loadToDoListView()
+      */
     @FXML
     private void sortByIncompleteItems(ActionEvent event) throws IOException {
             App.sortByValue=2;
             loadToDoListView(event);
     }
-
 }

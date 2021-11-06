@@ -1,7 +1,5 @@
 package ucf.assignments;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 /*
  *  UCF COP3330 Fall 2021 Assignment 4 Solution
@@ -26,16 +24,24 @@ public class ToDoItem {
         this.dueDate=t.dueDate;
         this.isComplete=t.isComplete;
     }
+
+    //   this.description = s
     public void setDescription(String s){
          this.description = s;
     }
+
+    // this.dueDate = d
     public void setDueDate(LocalDate d){
         this.dueDate = d.toString();
     }
+
+    //this.isComplete = true
     public void markAsComplete(){
 
         this.isComplete = true;
     }
+
+    //this.isComplete = false
     public void markAsIncomplete(){
         this.isComplete = false;
     }
