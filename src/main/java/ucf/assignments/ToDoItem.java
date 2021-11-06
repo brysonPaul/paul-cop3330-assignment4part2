@@ -32,9 +32,6 @@ public class ToDoItem {
     public void setDueDate(LocalDate d){
         this.dueDate = d.toString();
     }
-    public void setDueDate(String s){
-        this.dueDate = s;
-    }
     public void markAsComplete(){
 
         this.isComplete = true;

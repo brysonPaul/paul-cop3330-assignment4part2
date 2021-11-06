@@ -14,7 +14,7 @@
           <AnchorPane fx:id="toDoListItemAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="475.0" prefWidth="599.0" />
         </content>
       </ScrollPane>
-      <Label fx:id="title" alignment="CENTER" layoutX="141.0" layoutY="14.0" prefHeight="53.0" prefWidth="318.0" text="To Do List" textAlignment="CENTER">
+      <Label fx:id="title" alignment="CENTER" layoutX="141.0" layoutY="16.0" prefHeight="53.0" prefWidth="318.0" text="To Do List" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font>
@@ -34,7 +34,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Button fx:id="sortByButton" layoutX="432.0" layoutY="2.0" mnemonicParsing="false" onAction="#loadSortView" prefHeight="32.0" prefWidth="100.0" text="Sort by...">
+      <Button fx:id="sortByButton" layoutX="442.0" layoutY="2.0" mnemonicParsing="false" onAction="#loadSortView" prefHeight="32.0" prefWidth="100.0" text="Sort by...">
          <font>
             <Font size="19.0" />
          </font>
@@ -52,6 +52,11 @@
       <Button fx:id="loadButton" layoutX="78.0" layoutY="2.0" mnemonicParsing="false" onAction="#onLoadButtonClick" prefHeight="41.0" prefWidth="78.0" text="Load">
          <font>
             <Font size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="clearAllButton" layoutX="515.0" layoutY="91.0" mnemonicParsing="false" onAction="#onClearAllButtonClick" prefHeight="36.0" prefWidth="78.0" text="clear all">
+         <font>
+            <Font size="16.0" />
          </font>
       </Button>
    </children>

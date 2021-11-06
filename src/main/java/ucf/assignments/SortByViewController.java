@@ -16,13 +16,6 @@ import java.io.IOException;
  *  Copyright 2021 Bryson Paul
  */
 public class SortByViewController {
-    @FXML
-    private Button sortByExistingItemsButton;
-    @FXML
-    private Button sortByCompleteItemsButton;
-    @FXML
-    private Button sortByIncompleteItemsButton;
-    @FXML
     private Button backButton;
 
     @FXML

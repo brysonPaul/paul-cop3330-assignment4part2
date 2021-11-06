@@ -113,6 +113,8 @@ public class ToDoList {
         for(int x=0;x<t.toDoList.size();x++){
             this.addItem(t.toDoList.get(x));
         }
-
+    }
+    public void clearAllItems(){
+            this.toDoList.clear();
     }
 }

@@ -8,11 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.time.LocalDate;
 
 /*
  *  UCF COP3330 Fall 2021 Assignment 4 Solution

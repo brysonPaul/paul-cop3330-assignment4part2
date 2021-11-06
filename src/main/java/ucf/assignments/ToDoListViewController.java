@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -31,18 +32,14 @@ import java.util.Queue;
  */
 public class ToDoListViewController {
     @FXML
-    private Button sortByButton;
-    @FXML
-    private Button backButton;
-    @FXML
     private Button addItemButton;
     @FXML
     private Button saveButton;
     @FXML
-    private Button loadButton;
+    private  Button sortByButton;
     @FXML
     private AnchorPane toDoListItemAnchorPane;
-    @FXML private Label title;
+
 
 
 
@@ -127,7 +124,7 @@ public class ToDoListViewController {
     private HBox createItemHbox(int x, ToDoItem item){
 
         RadioButton radioButton = new RadioButton();
-        Label description = new Label();
+        Button description = new Button();
         Label dateDue = new Label();
         Button editItemButton = new Button();
         Button deleteItemButton = new Button();
@@ -157,7 +154,15 @@ public class ToDoListViewController {
         description.setText(item.description);
         description.setPrefSize(166, 18);
         description.setFont(new Font(18));
-
+        description.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                try {
+                    loadBiggerDescriptionView(e,x);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         dateDue.setText(item.dueDate.toString());
         dateDue.setPrefSize(105,27);
         dateDue.setFont(new Font(18));
@@ -186,10 +191,10 @@ public class ToDoListViewController {
         });
 
         //places each group to an HBOX (melee reference??). This one has two hboxes into one hbox because spacing looks better this way
-        HBox one = new HBox(125,radioButton,description);
+        HBox one = new HBox(100,radioButton,description);
         one.setAlignment(Pos.CENTER_RIGHT);
         HBox two = new HBox(12,dateDue,editItemButton,deleteItemButton);
-        return new HBox(one,two);
+        return new HBox(30,one,two);
     }
 
     @FXML
@@ -200,7 +205,7 @@ public class ToDoListViewController {
         //shows stage
         secondStage.show();
 
-        Stage curStage = (Stage) addItemButton.getScene().getWindow();
+        Stage curStage = (Stage) sortByButton.getScene().getWindow();
         curStage.close();
     }
     @FXML private void loadAddItemView(ActionEvent event) throws IOException {
@@ -236,5 +241,17 @@ public class ToDoListViewController {
                 +"Saves"+System.getProperty("file.separator")+"save.txt";
         App.tm.loadToDoList(dirPath);
         displayToDoList();
+    }
+    @FXML private void onClearAllButtonClick(ActionEvent e){
+        App.tm.clearAllItems();
+        displayToDoList();
+    }
+    @FXML private void  loadBiggerDescriptionView(ActionEvent e, int i) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/in-description-field-view.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(loader.load()));
+        DescriptionFieldController controller =loader.getController();
+        controller.setDescLabel(i);
+        stage.show();
     }
 }
