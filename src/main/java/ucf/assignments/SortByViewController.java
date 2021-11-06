@@ -15,7 +15,7 @@ import java.io.IOException;
  *  Copyright 2021 Bryson Paul
  */
 public class SortByViewController {
-    private Button backButton;
+   @FXML private Button backButton;
 
     /*
      loader = new FXMLLoader(in to do list view)

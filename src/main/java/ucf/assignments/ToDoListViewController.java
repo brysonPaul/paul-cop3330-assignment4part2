@@ -82,14 +82,13 @@ public class ToDoListViewController {
                 listsWithElements.add(createItemHbox(x,items.get(x)));
             }
         }
-        toDoListItemAnchorPane.setPrefSize(600,50*listsWithElements.size());
+        toDoListItemAnchorPane.setPrefSize(600,52*listsWithElements.size());
         VBox listsVert;
         try {
             HBox[] h= toHboxArray(listsWithElements);
              listsVert = new VBox(10.0, h );
         }
         catch (ClassCastException ex){
-            System.out.println("checking123");
             listsVert = new VBox();
         }
         listsVert.setAlignment(Pos.BASELINE_CENTER);
@@ -212,11 +211,9 @@ public class ToDoListViewController {
             @Override public void handle(ActionEvent e) {
                 if(radioButton.isSelected()){
                     App.tm.markItemAsComplete(x);
-                    System.out.println( App.tm.toDoList.get(x).isComplete);
                 }
                 else if(!radioButton.isSelected()){
                     App.tm.markItemAsIncomplete(x);
-                    System.out.println( App.tm.toDoList.get(x).isComplete);
                 }
 
             }
