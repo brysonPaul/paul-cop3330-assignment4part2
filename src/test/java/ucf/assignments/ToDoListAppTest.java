@@ -249,10 +249,34 @@ class ToDoListAppTest {
         ArrayList<ToDoItem> incompleteItems = c.displayToDoList(t,2)
         //here there would be checks with the arraylist and what should be in here if it is sorted by incomplete items
      */
+    //TESTS THE SORTING OF SORTING BY ALL ITEMS, INCOMPLETE ITEMS, AND COMPLETE ITEMS
     @Test
     void testSorting(){
         ToDoList t = createTestToDoList();//index 0,2,3, and 5 should be in the sorted for complete
         ToDoListViewController c= new ToDoListViewController();
+
+        ArrayList<ToDoItem> allItems = c.displayToDoList(t,0);//looking at all items
+        assertEquals(allItems.size(),6);
+        assertEquals(allItems.get(0).description,"hello");
+        assertEquals(allItems.get(1).description,"a");
+        assertEquals(allItems.get(2).description,"b");
+        assertEquals(allItems.get(3).description,"cdefg");
+        assertEquals(allItems.get(4).description,"other words");
+        assertEquals(allItems.get(5).description,"walk penguin");
+        assertEquals(allItems.get(0).dueDate,"12-3-2022");
+        assertEquals(allItems.get(1).dueDate,"11-3-2023");
+        assertEquals(allItems.get(2).dueDate,"1-6-2021");
+        assertEquals(allItems.get(3).dueDate,"2-20-2122");
+        assertEquals(allItems.get(4).dueDate,"7-5-2025");
+        assertEquals(allItems.get(5).dueDate,"9-2-2012");
+        assertEquals(allItems.get(0).isComplete,true);
+        assertEquals(allItems.get(1).isComplete,false);
+        assertEquals(allItems.get(2).isComplete,true);
+        assertEquals(allItems.get(3).isComplete,true);
+        assertEquals(allItems.get(4).isComplete,false);
+        assertEquals(allItems.get(5).isComplete,true);
+
+
         ArrayList<ToDoItem> completedItems = c.displayToDoList(t,1);//Looking at complete items
         assertEquals(completedItems.size(),4);
         assertEquals(completedItems.get(0).description,"hello");
